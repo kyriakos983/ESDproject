@@ -39,3 +39,5 @@ class screenChoices(models.TextChoices):
 class Movies(models.Model):
     name = models.CharField(max_length= 50)
     screen = models.CharField(max_length=50, choices=screenChoices.choices, null=True, blank=True)
+    dateAndTime = models.DateTimeField()
+    ticketPrice = models.IntegerField()
