@@ -4,4 +4,5 @@ from django.shortcuts import render
 
 # view the student form
 def Home(request):
-    return render(request, 'home.html')
+    context = {}
+    return render(request, 'home.html',context)
