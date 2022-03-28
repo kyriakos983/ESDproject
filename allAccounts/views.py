@@ -30,7 +30,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             # redirect to a success page
-            return redirect('base')
+            return redirect('home')
         else:
             messages.success(request, ("Wrong username or password Check the credentials and Try Again... "))
             return redirect('login')

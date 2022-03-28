@@ -29,3 +29,13 @@ class Club(models.Model):
     city = models.CharField(max_length=50)
     phone_num = models.IntegerField()
     email = models.EmailField(max_length=100)
+
+class screenChoices(models.TextChoices):
+    screen1 = 'screen1'
+    screen2 = 'screen2'
+    screen3 = 'screen3'
+
+
+class Movies(models.Model):
+    name = models.CharField(max_length= 50)
+    screen = models.CharField(max_length=50, choices=screenChoices.choices, null=True, blank=True)
