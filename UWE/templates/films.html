@@ -17,21 +17,21 @@
 {%include 'navbar.html' %}
 <h1 style="display: flex; font-size: 35px; justify-content: center; align-items: center;color:#7e9179;"><strong><em>Films</em></strong></h1>
 <div class="row">
-    {% for film in films %}
+    {% for film in movies %}
     <div class="col-lg-4">
-        <img class=" thumbnail" src="#">
+        <img class=" thumbnail" src="{{film.imageURL}}">
         <div class="box-element product">
                 <h1 style =" font-size: 20px">{{film.name}}</h1>
                   <hr>
-                  <button data-product="{{film.date}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" >Add to Cart</button>
-                  <a class ="btn btn-outline-success" href="#"> View</a>
+                  <button data-product="{{film.date}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" >Buy Tickets</button>
+                  <a class ="btn btn-outline-success" href="#"> View Details</a>
 
-                  <h2 style="display: inline-block; float: right; font-size: 20px;"> £{{film.screen}}</h2>
+                  <h2 style="display: inline-block; float: right; font-size: 20px;"> {{film.screen}}</h2>
             </div>
         </div>
     {% endfor %}
     </div>
-<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
 
 </body>
 </html>
