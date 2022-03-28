@@ -46,7 +46,7 @@
   </div>
       <a href="#" class=" btn btn-warning"style="padding: 5px; margin: 5px;">Log Out </a>
       {%else %}
-      <a href="#" class=" btn btn-warning"style="padding:5px; margin: 5px;">Register</a>
+      <a href="{%url 'register'%}" class=" btn btn-warning"style="padding:5px; margin: 5px;">Register</a>
     <div class=" form-inline my-2 my-lg-0">
     <a href="{%url 'login'%}" class=" btn btn-warning" style="padding: 5px; margin: 5px;">Login </a>
         {%endif%}
