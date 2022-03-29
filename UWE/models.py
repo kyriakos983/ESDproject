@@ -50,6 +50,9 @@ class TicketDiscount(models.Model):
     sale_price = models.IntegerField(default=False)
     new_price = models.IntegerField(default=False)
 
+    def __str__(self):
+        return self.name
+
     @property
     def imageURL(self):
         try:
