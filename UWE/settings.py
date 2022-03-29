@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'uweflix',
         'USER': 'root',
-        'PASSWORD': 'RootForm21',
+        'PASSWORD': 'siamplettos3K',
         'PORT': '3306',
         'HOST': '127.0.0.1',
     }
