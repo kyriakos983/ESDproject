@@ -21,7 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name="home"),
     path('', include('allAccounts.urls')),
-    path('films',views.MoviesView,name='films'),
-    path('add_movie',views.add_movie, name='add_movie')
+    path('about_us', views.about_us, name='about_us'),
+    path('films', views.MoviesView, name='films'),
+    path('offers&discounts', views.DiscountView, name='offers&discounts'),
+    path('add_movie', views.add_movie, name='add_movie'),
+    path('delete_movie', views.delete_movie, name='delete_movie')
 
 ]

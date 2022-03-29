@@ -11,7 +11,7 @@ class Student(models.Model):
 class ClubRep(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=20)
-    clubRep_name = models.CharField(max_length=30)  #
+    clubRep_name = models.CharField(max_length=30)
     club_rep_number = models.CharField(max_length=11)
     club_rep_email = models.EmailField(max_length=100, null=True)
 
@@ -30,6 +30,7 @@ class Club(models.Model):
     phone_num = models.IntegerField()
     email = models.EmailField(max_length=100)
 
+
 class screenChoices(models.TextChoices):
     screen1 = 'screen1'
     screen2 = 'screen2'
@@ -37,16 +38,19 @@ class screenChoices(models.TextChoices):
 
 
 class Movies(models.Model):
-    name = models.CharField(max_length= 50)
+    name = models.CharField(max_length=50)
     screen = models.CharField(max_length=50, choices=screenChoices.choices, null=True, blank=True)
     dateAndTime = models.DateTimeField()
     ticketPrice = models.IntegerField()
     image = models.ImageField(null=True, blank=True)
 
 
+class TicketDiscount(models.Model):
+    name = models.CharField('Ticket type', max_length=50)
+    price = models.PositiveIntegerField('Ticket price')
+
     def __str__(self):
         return self.name
-
 
     @property
     def imageURL(self):
@@ -55,5 +59,3 @@ class Movies(models.Model):
         except:
             url = ''
         return url
-
-
