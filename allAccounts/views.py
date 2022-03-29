@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 
 from allAccounts.forms import RegistserUserForm
 
@@ -15,7 +15,7 @@ def register_user(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            messages.success(request, ("Registration successul"))
+            messages.success(request, "Registration successful")
             return redirect('base')
     else:
         form = RegistserUserForm()
@@ -32,14 +32,13 @@ def login_user(request):
             # redirect to a success page
             return redirect('home')
         else:
-            messages.success(request, ("Wrong username or password Check the credentials and Try Again... "))
+            messages.success(request, "Wrong username or password Check the credentials and Try Again... ")
             return redirect('login')
     else:
         return render(request, 'authenticate/login.html', {})
 
+
 def logout_user(request):
     logout(request)
-    messages.success(request, ("You were loged out... "))
+    messages.success(request, "You were logged out... ")
     return redirect('home')
-
-

@@ -46,11 +46,9 @@ class Movies(models.Model):
 
 
 class TicketDiscount(models.Model):
-    name = models.CharField('Ticket type', max_length=50)
-    price = models.PositiveIntegerField('Ticket price')
-
-    def __str__(self):
-        return self.name
+    total_price = models.IntegerField(default=False)
+    sale_price = models.IntegerField(default=False)
+    new_price = models.IntegerField(default=False)
 
     @property
     def imageURL(self):

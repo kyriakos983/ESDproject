@@ -13,6 +13,10 @@
 {%include 'navbar.html'%}
 <body style=" background-color: #F5F5DC;">
 <h1 style="display: flex; font-size: 35px; justify-content: center; align-items: center;color:#292b2c;"><strong><em>Offers & Discounts</em></strong></h1>
-
+<div class="row">
+    {% for discount in discounts %}
+        Discount Offer: {{ discount.offer }}
+    {% endfor %}
+</div>
 </body>
 </html>

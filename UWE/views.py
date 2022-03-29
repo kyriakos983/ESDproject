@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from .forms import MovieForm
 from UWE.models import TicketDiscount
 from UWE.models import Movies
+from django.db.models import F
 
 
 def Home(request):
@@ -13,7 +14,7 @@ def Home(request):
 
 def about_us(request):
     context = {}
-    return render(request, 'aboutus.html', context)
+    return render(request, 'about_us.html', context)
 
 
 # view the student view
@@ -24,7 +25,7 @@ def MoviesView(request):
 
 
 def DiscountView(request):
-    discounts = TicketDiscount.objects.all()
+    discounts = TicketDiscount.objects.annotate(offer=((F('total_price') - F('sale_price')) / F('total_price')) * 100)
     context = {'discounts': discounts}
     return render(request, 'offersAndDiscounts.html', context)
 
