@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.Home, name="home"),
     path('', include('allAccounts.urls')),
     path('films',views.MoviesView,name='films'),
+    path('add_movie',views.add_movie, name='add_movie')
 
 ]

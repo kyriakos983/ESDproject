@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style=" background-color: #F5F5DC;">
 {%include 'navbar.html' %}
 {%if form.errors%}
 
@@ -27,7 +27,7 @@
   {%csrf_token%}
   {{form.as_p}}
 <input type = "submit"
-value="Submit" class="btn btn-secondary">
+value="Register Student " class="btn btn-secondary">
 
 </form>
   </div>

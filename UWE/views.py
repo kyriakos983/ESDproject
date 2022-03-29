@@ -1,9 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import MovieForm
 
-# view the student form
-from UWE.forms import addmovieForm
 from UWE.models import Movies
 
 
@@ -11,26 +10,22 @@ def Home(request):
     context = {}
     return render(request, 'home.html',context)
 
+# view the student view
 def MoviesView(request):
     movies = Movies.objects.all()
     context = {'movies':movies}
     return render(request, 'films.html', context)
 
 # this is for cinema manager
-def addMoviePage(request):
-    form = addmovieForm
-    #if method is post to send data into database save all the inforamtion in the profile model
-    if request.method == 'POST':
-        if request.user.is_authenticated:
-            name = request.POST['name']
-            screen = request.POST['screen']
-            dateAndTime = request.POST["dateAndTime"]
-            ticketPrice = request.POST['ticketPrice']
-            image = request.POST['image']
-            MovieObject = Movies(name=name, screen=screen,dateAndTime=dateAndTime,ticketPrice=ticketPrice,image=image)
-            MovieObject.save()
-        #print(user,first_name,last_name,preference,condition)
-
-    context = {'form':form}
-    return render(request,'templates/addFilm.html',context)
-
+def add_movie(request):
+    form = MovieForm
+    if request.method == 'POST:':
+        image = request.POST['image']
+        name = request.POST['username']
+        screen = request.POST['screen']
+        dateAndTime = request.POST['dateAndTime']
+        ticketPrice = request.POST['ticketPrice']
+        movieObject = Movies(image=image,name=name,screen=screen,dateAndTime=dateAndTime,ticketPrice=ticketPrice)
+        movieObject.save()
+    context = {'form': form}
+    return render(request, 'addFilm.html', context)

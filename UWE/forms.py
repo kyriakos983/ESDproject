@@ -1,8 +1,12 @@
 from django.forms import ModelForm
-from UWE.views import Movies
+from .models import Movies
 
 
-class addmovieForm(ModelForm):
+class MovieForm(ModelForm):
     class Meta:
         model = Movies
         fields = '__all__'
+
+    
+
+
