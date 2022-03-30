@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-# Identify which user is it
+# Extend the  different user is it
 class User(AbstractUser):
     # Different users of the web application for login identification
     is_student = models.BooleanField('is_student', default=False)
