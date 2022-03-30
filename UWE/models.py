@@ -44,7 +44,7 @@ class Movies(models.Model):
     ticketPrice = models.IntegerField()
     #image = models.ImageField(null=True, blank=True)
     # setting the capacity of the screen show by limiting the tickets to 300 mentioned in the requirements
-    tickets = models.IntegerField(default=300)
+    tickets = models.IntegerField(default=0, max_length= 300)
 
 
 class TicketDiscount(models.Model):
