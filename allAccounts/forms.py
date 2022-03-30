@@ -11,7 +11,7 @@ class RegistserUserForm(UserCreationForm):
     # accountOption = forms.CharField(max_length=50, choices=userChoices.choices, default=None, null=True, blank=True)
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'email', 'first_name', 'last_name')
+        fields = ('username', 'password1', 'password2', 'email', 'first_name', 'last_name', 'accountOptions')
 
     def __init__(self, *args, **kwargs):
         super(RegistserUserForm, self).__init__(*args, **kwargs)

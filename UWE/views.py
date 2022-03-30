@@ -1,5 +1,3 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
 from django.shortcuts import render, redirect
 from .forms import MovieForm
 from UWE.models import TicketDiscount
@@ -11,11 +9,9 @@ def Home(request):
     context = {}
     return render(request, 'home.html', context)
 
-
 def about_us(request):
     context = {}
     return render(request, 'about_us.html', context)
-
 
 # view the student view
 def MoviesView(request):
@@ -33,14 +29,16 @@ def DiscountView(request):
 # this is for cinema manager
 def add_movie(request):
     form = MovieForm
-    if request.method == 'POST:':
-        image = request.POST['image']
-        name = request.POST['username']
-        screen = request.POST['screen']
-        dateAndTime = request.POST['dateAndTime']
-        ticketPrice = request.POST['ticketPrice']
-        movieObject = Movies(image=image, name=name, screen=screen, dateAndTime=dateAndTime, ticketPrice=ticketPrice)
-        movieObject.save()
+    user = request.user
+    if user.is_cinema_manager:
+        if request.method == 'POST:':
+            image = request.POST['image']
+            name = request.POST['username']
+            screen = request.POST['screen']
+            dateAndTime = request.POST['dateAndTime']
+            ticketPrice = request.POST['ticketPrice']
+            movieObject = Movies(image=image, name=name, screen=screen, dateAndTime=dateAndTime, ticketPrice=ticketPrice)
+            movieObject.save()
     context = {'form': form}
     return render(request, 'addFilm.html', context)
 

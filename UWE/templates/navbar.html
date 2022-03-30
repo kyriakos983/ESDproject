@@ -7,14 +7,16 @@
 
     <title>Title</title>
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{% url 'home' %}" >
     <img src="{%static 'images/UWEFlix.png' %} " style="width:80px; height:80px;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+    {% if user.accountOption == is_student %}
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -26,7 +28,41 @@
         <li class="nav-item active">
             <a class="nav-link" href="{%url 'offers&discounts'%}" style="color: #d4c27d;"><strong>| Offers & Discounts |</strong><span class="sr-only"></span></a>
         </li>
-        {% if user.is_cinema_manager %}
+
+        {% elif user.accountOption == is_cinema_manager %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{%url 'films'%}" style="color: #d4c27d;"><strong>| Films |</strong> <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'about_us'%}" style="color: #d4c27d;"><strong>| About Us |</strong><span class="sr-only"></span></a>
+      </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{%url 'offers&discounts'%}" style="color: #d4c27d;"><strong>| Offers & Discounts |</strong><span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item active">
+        <a class="nav-link" href="{%url 'add_movie'%}" style="color: #d4c27d;"><strong>| Add Movie |</strong><span class="sr-only"></span></a>
+        </li>
+        <li>
+            <a class="nav-link" href="{%url 'delete_movie'%}" style="color: #d4c27d"><strong>| Delete Movie |</strong><span class="sr-only"></span></a>
+        </li>
+
+
+        {% elif user.accountOption == is_account_manager %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{%url 'films'%}" style="color: #d4c27d;"><strong>| Films |</strong> <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'about_us'%}" style="color: #d4c27d;"><strong>| About Us |</strong><span class="sr-only"></span></a>
+      </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{%url 'offers&discounts'%}" style="color: #d4c27d;"><strong>| Offers & Discounts |</strong><span class="sr-only"></span></a>
+        </li>
+
         <li class="nav-item active">
         <a class="nav-link" href="{%url 'add_movie'%}" style="color: #d4c27d;"><strong>| Add Movie |</strong><span class="sr-only"></span></a>
         </li>
@@ -41,7 +77,7 @@
       {% if user.is_authenticated %}
     <a style=" font-size: 17px; padding: 5px; color:black;" ><i class="fa fa-fw fa-user">  </i>{{request.user}}</a>
       <a href="{%url 'logout'%}" class=" btn btn-warning"style="padding: 5px; margin: 5px;">Log Out </a>
-      {%else %}
+      {%else  %}
       <a href="{%url 'register'%}" class=" btn btn-warning"style="padding:5px; margin: 5px;">Register</a>
     <div class=" form-inline my-2 my-lg-0">
     <a href="{%url 'login'%}" class=" btn btn-warning" style="padding: 5px; margin: 5px;">Login </a>

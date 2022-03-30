@@ -36,7 +36,7 @@ class screenChoices(models.TextChoices):
     screen2 = 'screen2'
     screen3 = 'screen3'
 
-
+# This contains all the details regarding the movies and screen showing
 class Movies(models.Model):
     name = models.CharField(max_length=50)
     screen = models.CharField(max_length=50, choices=screenChoices.choices, null=True, blank=True)

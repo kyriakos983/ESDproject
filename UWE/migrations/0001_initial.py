@@ -42,6 +42,7 @@ class Migration(migrations.Migration):
                 ('club_rep_number', models.CharField(max_length=11)),
                 ('club_rep_email', models.EmailField(max_length=100, null=True)),
             ],
+
         ),
         migrations.CreateModel(
             name='Movies',
@@ -53,6 +54,7 @@ class Migration(migrations.Migration):
                 ('ticketPrice', models.IntegerField()),
                 ('tickets', models.IntegerField(default=300)),
             ],
+
         ),
         migrations.CreateModel(
             name='Student',

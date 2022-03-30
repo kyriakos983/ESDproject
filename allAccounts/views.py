@@ -16,7 +16,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, "Registration successful")
-            return redirect('base')
+            return redirect('home')
     else:
         form = RegistserUserForm()
     return render(request, 'authenticate/register.html', {'form': form})
