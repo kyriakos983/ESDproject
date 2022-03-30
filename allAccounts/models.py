@@ -7,7 +7,8 @@ class Accounts(models.TextChoices):
     is_cinema_manager = 'is_cinema_manager'
     is_accounts_manager = 'is_accounts_manager'
 
-# Extend the  different user is it
+
+# Extend user class by adding different account options such as student cinema manager, club rep and accounts manager
 class User(AbstractUser):
     accountOptions = models.CharField(max_length=50, choices=Accounts.choices, default=None, null=True, blank=True)
 
