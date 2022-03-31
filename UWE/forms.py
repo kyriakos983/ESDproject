@@ -6,6 +6,7 @@ class MovieForm(ModelForm):
     class Meta:
         model = Movies
         fields = '__all__'
+        exclude = ('tickets',)
 
     
 

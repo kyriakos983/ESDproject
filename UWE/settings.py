@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allAccounts',
     'UWE',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'allAccounts.user'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

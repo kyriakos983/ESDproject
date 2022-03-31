@@ -9,9 +9,11 @@ def Home(request):
     context = {}
     return render(request, 'home.html', context)
 
+
 def about_us(request):
     context = {}
     return render(request, 'about_us.html', context)
+
 
 # view the student view
 def MoviesView(request):
@@ -29,23 +31,6 @@ def DiscountView(request):
 # this is for cinema manager
 def add_movie(request):
     form = MovieForm
-    user = request.user
-    if user.is_cinema_manager:
-        if request.method == 'POST:':
-            image = request.POST['image']
-            name = request.POST['username']
-            screen = request.POST['screen']
-            dateAndTime = request.POST['dateAndTime']
-            ticketPrice = request.POST['ticketPrice']
-            movieObject = Movies(image=image, name=name, screen=screen, dateAndTime=dateAndTime, ticketPrice=ticketPrice)
-            movieObject.save()
-    context = {'form': form}
-    return render(request, 'addFilm.html', context)
-
-
-# this is for cinema manager
-def delete_movie(request):
-    form = MovieForm
     if request.method == 'POST:':
         image = request.POST['image']
         name = request.POST['username']
@@ -54,5 +39,13 @@ def delete_movie(request):
         ticketPrice = request.POST['ticketPrice']
         movieObject = Movies(image=image, name=name, screen=screen, dateAndTime=dateAndTime, ticketPrice=ticketPrice)
         movieObject.save()
+        print(movieObject)
     context = {'form': form}
+    return render(request, 'addFilm.html', context)
+
+
+# this is for cinema manager
+def delete_movie(request):
+    movieList = Movies.objects.all()
+    context = {'movieList': movieList}
     return render(request, 'delete.html', context)

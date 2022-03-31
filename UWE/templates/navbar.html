@@ -16,8 +16,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-    {% if user.accountOption == is_student %}
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="{%url 'films'%}" style="color: #d4c27d;"><strong>| Films |</strong> <span class="sr-only"></span></a>
@@ -29,8 +28,8 @@
             <a class="nav-link" href="{%url 'offers&discounts'%}" style="color: #d4c27d;"><strong>| Offers & Discounts |</strong><span class="sr-only"></span></a>
         </li>
 
-        {% elif user.accountOption == is_cinema_manager %}
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% if user.accountOptions == 'is_student' %}
+   <div class="collapse navbar-collapse" id="navbarSupportedContent1">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="{%url 'films'%}" style="color: #d4c27d;"><strong>| Films |</strong> <span class="sr-only"></span></a>
@@ -42,27 +41,7 @@
             <a class="nav-link" href="{%url 'offers&discounts'%}" style="color: #d4c27d;"><strong>| Offers & Discounts |</strong><span class="sr-only"></span></a>
         </li>
 
-        <li class="nav-item active">
-        <a class="nav-link" href="{%url 'add_movie'%}" style="color: #d4c27d;"><strong>| Add Movie |</strong><span class="sr-only"></span></a>
-        </li>
-        <li>
-            <a class="nav-link" href="{%url 'delete_movie'%}" style="color: #d4c27d"><strong>| Delete Movie |</strong><span class="sr-only"></span></a>
-        </li>
-
-
-        {% elif user.accountOption == is_account_manager %}
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{%url 'films'%}" style="color: #d4c27d;"><strong>| Films |</strong> <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'about_us'%}" style="color: #d4c27d;"><strong>| About Us |</strong><span class="sr-only"></span></a>
-      </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="{%url 'offers&discounts'%}" style="color: #d4c27d;"><strong>| Offers & Discounts |</strong><span class="sr-only"></span></a>
-        </li>
-
+        {% elif user.accountOptions == 'is_cinema_manager' %}
         <li class="nav-item active">
         <a class="nav-link" href="{%url 'add_movie'%}" style="color: #d4c27d;"><strong>| Add Movie |</strong><span class="sr-only"></span></a>
         </li>
