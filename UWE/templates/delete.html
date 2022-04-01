@@ -16,17 +16,17 @@
 {%include 'navbar.html' %}
 <h1 style="display: flex; font-size: 35px; justify-content: center; align-items: center;color:#292b2c;"><strong><em>Edit / delete movies</em></strong></h1>
 <div class="row">
-    {% for movie in movieList %}
+    {% for movie in movies %}
     <div class="col-lg-4">
-        <img class=" thumbnail" src="{{film.imageURL}}">
+        <img class=" thumbnail" src="{{movie.imageURL}}">
         <div class="box-element product">
                 <h1 style =" font-size: 20px">{{movie.name}}</h1>
                   <hr>
-                  <button data-product="{{product.id}}" data-action="delete" class="btn btn-outline-secondary add-btn update-cart" >Delete Movie</button>
-                    <a class ="btn btn-outline-success" href="#"> Update Details</a>
+                  <button data-product="{{movie.id}}" data-action="delete" class="btn btn-outline-secondary add-btn update-cart" >Delete Movie</button>
+                    <a class ="btn btn-outline-success" href="{%url 'movieDetails' movie.id%}"> Update Details</a>
 
                   <h2 style="display: inline-block; float: right; font-size: 20px;"> {{movie.screen}}</h2>
-            </div>
+            </div>s
         </div>
     {% endfor %}
     </div>

@@ -42,10 +42,20 @@ class Movies(models.Model):
     screen = models.CharField(max_length=50, choices=screenChoices.choices, null=True, blank=True)
     dateAndTime = models.DateTimeField()
     ticketPrice = models.IntegerField()
-    #image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
     # setting the capacity of the screen show by limiting the tickets to 300 mentioned in the requirements
     tickets = models.IntegerField(default=0, max_length= 300)
 
+    def __str__(self):
+        return self.name
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
 class TicketDiscount(models.Model):
     total_price = models.IntegerField(default=False)
@@ -62,3 +72,5 @@ class TicketDiscount(models.Model):
         except:
             url = ''
         return url
+
+

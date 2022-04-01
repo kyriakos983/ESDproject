@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy, reverse
+from django.views.generic import UpdateView
+
 from .forms import MovieForm
 from UWE.models import TicketDiscount
 from UWE.models import Movies
@@ -29,23 +32,43 @@ def DiscountView(request):
 
 
 # this is for cinema manager
+# !!!!!!!!! NEEDS TO BE FIXED!!!!!!!!! #
 def add_movie(request):
-    form = MovieForm
+    form = MovieForm(request.POST)
     if request.method == 'POST:':
-        image = request.POST['image']
-        name = request.POST['username']
-        screen = request.POST['screen']
-        dateAndTime = request.POST['dateAndTime']
-        ticketPrice = request.POST['ticketPrice']
-        movieObject = Movies(image=image, name=name, screen=screen, dateAndTime=dateAndTime, ticketPrice=ticketPrice)
-        movieObject.save()
-        print(movieObject)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            screen = form.cleaned_data['screen']
+            dateAndTime = form.cleaned_data['dateAndTime']
+            ticketPrice = form.cleaned_data['ticketPrice']
+            image = form.cleaned_data['image']
+            movieObject = Movies( name=name, screen=screen, dateAndTime=dateAndTime, ticketPrice=ticketPrice, image=image)
+            movieObject.save()
+
     context = {'form': form}
     return render(request, 'addFilm.html', context)
 
 
 # this is for cinema manager
 def delete_movie(request):
-    movieList = Movies.objects.all()
-    context = {'movieList': movieList}
+    movies = Movies.objects.all()
+    context = {'movies': movies}
     return render(request, 'delete.html', context)
+
+
+#update any changes into the movie details.
+class UpdateMovieView(UpdateView):
+    model = Movies
+    fields = '__all__'
+    template_name = 'movieDetails.html'
+    success_url = reverse_lazy('home')
+
+    def get_absolute_url(selfself):
+        return reverse('home')
+
+
+# this is to get the product details when a user tries to view details of a movie
+def movie_details(request, id):
+    movie = get_object_or_404(Movies, id=id)
+    context = {'movie': movie}
+    return render(request, 'movieDetails.html', context)

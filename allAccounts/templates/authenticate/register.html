@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {%load static%}
+{% load crispy_forms_tags %}
 <html lang="en">
 <head>
   <link rel = "stylesheet" type="text/css" href="{% static 'css/main.css'%}">
@@ -10,7 +11,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body style=" background-color: #F5F5DC;">
+<body>
 {%include 'navbar.html' %}
 {%if form.errors%}
 
@@ -25,10 +26,9 @@
 <h3>Register</h3>
 <form action="{%url 'register' %}"method= POST>
   {%csrf_token%}
-  {{form.as_p}}
+  {{ form|crispy }}
 <input type = "submit"
-value="Register" class="btn btn-secondary">
-
+value="submit" class="btn btn-secondary">
 </form>
   </div>
 </body>

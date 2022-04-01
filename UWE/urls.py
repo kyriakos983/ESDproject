@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from UWE import views
+from UWE.views import UpdateMovieView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +28,8 @@ urlpatterns = [
     path('films', views.MoviesView, name='films'),
     path('offers&discounts', views.DiscountView, name='offers&discounts'),
     path('add_movie', views.add_movie, name='add_movie'),
-    path('delete_movie', views.delete_movie, name='delete_movie')
-
+    path('delete_movie', views.delete_movie, name='delete_movie'),
+    path('<int:pk>/update_movie_details/',UpdateMovieView.as_view(), name='update_movie_details'),
+    path('<int:id>/movieDetails', views.movie_details, name='movieDetails'),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
