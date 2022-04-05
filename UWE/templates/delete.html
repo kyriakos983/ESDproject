@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {%load static%}
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <link rel = "stylesheet" type="text/css" href="{% static 'css/main.css'%}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -14,7 +14,9 @@
 <body style=" background-color: #F5F5DC;">
 
 {%include 'navbar.html' %}
+<div style=" margin: 20px;">
 <h1 style="display: flex; font-size: 35px; justify-content: center; align-items: center;color:#292b2c;"><strong><em>Edit / delete movies</em></strong></h1>
+</div>
 <div class="row">
     {% for movie in movies %}
     <div class="col-lg-4">
@@ -23,7 +25,7 @@
                 <h1 style =" font-size: 20px">{{movie.name}}</h1>
                   <hr>
                   <button data-product="{{movie.id}}" data-action="delete" class="btn btn-outline-secondary add-btn update-cart" >Delete Movie</button>
-                    <a class ="btn btn-outline-success" href="{%url 'movieDetails' movie.id%}"> Update Details</a>
+                    <a class ="btn btn-outline-success" href="{%url 'movieDetails'%}"> Update Details</a>
 
                   <h2 style="display: inline-block; float: right; font-size: 20px;"> {{movie.screen}}</h2>
             </div>s

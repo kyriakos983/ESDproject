@@ -68,7 +68,6 @@ class UpdateMovieView(UpdateView):
 
 
 # this is to get the product details when a user tries to view details of a movie
-def movie_details(request, id):
-    movie = get_object_or_404(Movies, id=id)
-    context = {'movie': movie}
-    return render(request, 'movieDetails.html', context)
+def movie_details(request,name, id):
+    movie = Movies.objects.get(id=id)
+    return render(request, 'movieDetails.html', {'movie': movie})
