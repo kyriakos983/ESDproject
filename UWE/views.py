@@ -1,8 +1,9 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView
 
-from .forms import MovieForm
+from UWE.forms import MovieForm
 from UWE.models import TicketDiscount
 from UWE.models import Movies
 from django.db.models import F
@@ -33,30 +34,24 @@ def DiscountView(request):
 
 # this is for cinema manager
 # !!!!!!!!! NEEDS TO BE FIXED!!!!!!!!! #
-def add_movie(request):
-    form = MovieForm(request.POST)
-    if request.method == 'POST:':
+def addMovie(request):
+    if request.method == 'POST':
+        form = MovieForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            screen = form.cleaned_data['screen']
-            dateAndTime = form.cleaned_data['dateAndTime']
-            ticketPrice = form.cleaned_data['ticketPrice']
-            image = form.cleaned_data['image']
-            movieObject = Movies( name=name, screen=screen, dateAndTime=dateAndTime, ticketPrice=ticketPrice, image=image)
-            movieObject.save()
-
-    context = {'form': form}
-    return render(request, 'addFilm.html', context)
-
+            form.save()
+            return redirect('home')
+    else:
+        form = MovieForm()
+    return render(request, 'addFilm.html', {'form': form})
 
 # this is for cinema manager
-def delete_movie(request):
-    movies = Movies.objects.all()
-    context = {'movies': movies}
-    return render(request, 'delete.html', context)
+def delete_movie(request, movie_id):
+    movie = Movies.objects.get(Movies, pk=movie_id)
+    movie.delete()
+    return redirect('films.html')
 
 
-#update any changes into the movie details.
+#update any changes for movies.
 class UpdateMovieView(UpdateView):
     model = Movies
     fields = '__all__'
@@ -71,3 +66,6 @@ class UpdateMovieView(UpdateView):
 def movie_details(request,name, id):
     movie = Movies.objects.get(id=id)
     return render(request, 'movieDetails.html', {'movie': movie})
+
+
+

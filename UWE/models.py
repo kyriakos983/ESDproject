@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 
@@ -40,9 +42,9 @@ class screenChoices(models.TextChoices):
 class Movies(models.Model):
     name = models.CharField(max_length=50)
     screen = models.CharField(max_length=50, choices=screenChoices.choices, null=True, blank=True)
-    dateAndTime = models.DateTimeField()
+    dateAndTime = models.DateTimeField(default=datetime.now())
     ticketPrice = models.IntegerField()
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(default=None, null=True, blank=True)
     # setting the capacity of the screen show by limiting the tickets to 300 mentioned in the requirements
     tickets = models.IntegerField(default=0, max_length= 300)
 

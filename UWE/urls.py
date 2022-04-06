@@ -27,9 +27,10 @@ urlpatterns = [
     path('about_us', views.about_us, name='about_us'),
     path('films', views.MoviesView, name='films'),
     path('offers&discounts', views.DiscountView, name='offers&discounts'),
-    path('add_movie', views.add_movie, name='add_movie'),
-    path('delete_movie', views.delete_movie, name='delete_movie'),
-    path('<str:name>/update_movie_details/',UpdateMovieView.as_view(), name='update_movie_details'),
+    path('add-movie', views.addMovie, name='add-movie'),
+    path('delete_movie/<movie_id>', views.delete_movie, name='delete_movie'),
+    path('<str:id>/update_movie_details/',UpdateMovieView.as_view(), name='update_movie_details'),
     path('product/<str:name>/<int:id>', views.movie_details, name='movieDetails'),
+    path('<int:pk>/update_profile_page/',UpdateMovieView.as_view(), name='update-movie-details'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
