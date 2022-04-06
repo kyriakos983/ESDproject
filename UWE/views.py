@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView
 
-from UWE.forms import MovieForm
-from UWE.models import TicketDiscount
-from UWE.models import Movies
+from UWE.forms import *
+from UWE.models import *
+
 from django.db.models import F
 
 
@@ -33,7 +33,7 @@ def DiscountView(request):
 
 
 # this is for cinema manager
-# !!!!!!!!! NEEDS TO BE FIXED!!!!!!!!! #
+
 def addMovie(request):
     if request.method == 'POST':
         form = MovieForm(request.POST)
@@ -50,8 +50,18 @@ def delete_movie(request, movie_id):
     movie.delete()
     return redirect('films.html')
 
+# a cinema manager will be able to register a club
+def addClub(request):
+    if request.method == 'POST':
+        form = AddClubForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AddClubForm()
+    return render(request, 'addClub.html', {'form': form})
 
-#update any changes for movies.
+# update any changes for movies.
 class UpdateMovieView(UpdateView):
     model = Movies
     fields = '__all__'

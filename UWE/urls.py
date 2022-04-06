@@ -28,6 +28,7 @@ urlpatterns = [
     path('films', views.MoviesView, name='films'),
     path('offers&discounts', views.DiscountView, name='offers&discounts'),
     path('add-movie', views.addMovie, name='add-movie'),
+    path('add-club', views.addClub, name='add-club'),
     path('delete_movie/<movie_id>', views.delete_movie, name='delete_movie'),
     path('<str:id>/update_movie_details/',UpdateMovieView.as_view(), name='update_movie_details'),
     path('product/<str:name>/<int:id>', views.movie_details, name='movieDetails'),

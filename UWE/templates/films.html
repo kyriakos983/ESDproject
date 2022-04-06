@@ -18,19 +18,26 @@
 <h1 style="display: flex; font-size: 35px; justify-content: center; align-items: center;color:#292b2c;"><strong><em>Films</em></strong></h1>
     </div>
 <div class="row">
+
     {% for movie in movies %}
     <div class="col-lg-4">
         <img class=" thumbnail" src="{{movie.imageURL}}">
         <div class="box-element product">
                 <h1 style =" font-size: 20px">{{movie.name}}</h1>
                   <hr>
+            {% if user.accountOptions == 'is_student' %}
                   <button data-product="{{movie.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" >Buy Tickets</button>
                   <a class ="btn btn-outline-success" href="/product/{{movie.name}}/{{movie.id}}"> View Details</a>
-
+                    {% elif user.accountOptions == 'is_cinema_manager' %}
+             <button data-product="{{movie.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" >Update Details</button>
+                  <a class ="btn btn-outline-success" href="/product/{{movie.name}}/{{movie.id}}"> Delete Movie</a>
                   <h2 style="display: inline-block; float: right; font-size: 20px;"> {{movie.screen}}</h2>
+
+            {% endif %}
+
             </div>
         </div>
-    {% endfor %}
+{% endfor %}
     </div>
 </body>
 </html>

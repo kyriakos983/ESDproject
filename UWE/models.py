@@ -1,8 +1,10 @@
 from datetime import datetime
 
 from django.db import models
+from allAccounts.models import *
 
 
+"""
 class Student(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=20)
@@ -22,7 +24,7 @@ class CinemaManager(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=20)
 
-
+"""
 class Club(models.Model):
     club_name = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=200)
@@ -31,6 +33,10 @@ class Club(models.Model):
     city = models.CharField(max_length=50)
     phone_num = models.IntegerField()
     email = models.EmailField(max_length=100)
+    clubRepFirstName = models.CharField(max_length=50)
+    clubRepLastName = models.CharField(max_length=50)
+    dob = models.DateField()
+    clubID = models.IntegerField()
 
 
 class screenChoices(models.TextChoices):
@@ -47,6 +53,14 @@ class Movies(models.Model):
     image = models.ImageField(default=None, null=True, blank=True)
     # setting the capacity of the screen show by limiting the tickets to 300 mentioned in the requirements
     tickets = models.IntegerField(default=0, max_length= 300)
+    actor1 = models.CharField(max_length=100, null=True, blank=True)
+    actor2 = models.CharField(max_length=100, null=True, blank=True)
+    actor3 = models.CharField(max_length=100, null=True, blank=True)
+    ageRating = models.IntegerField(null=True, blank=True)
+    duration = models.TimeField(null=True, blank=True)
+    description = models.CharField(max_length=500, null=True, blank=True)
+    author = models.CharField(max_length=50, null=True, blank=True)
+
 
     def __str__(self):
         return self.name
@@ -75,4 +89,10 @@ class TicketDiscount(models.Model):
             url = ''
         return url
 
+class ticket(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    quantity = models.IntegerField(max_length=300)
+    price = models.IntegerField()
 
