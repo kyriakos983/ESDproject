@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Movies, ticket, Club
+from .models import Movies, ticket, Club, ClubRep
 
 
 class MovieForm(ModelForm):
@@ -18,4 +18,7 @@ class AddClubForm(ModelForm):
         model = Club
         fields = '__all__'
 
-
+class AddClubRepForm(ModelForm):
+    class Meta:
+        model = ClubRep
+        fields = '__all__'

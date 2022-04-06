@@ -1,30 +1,13 @@
 from datetime import datetime
-
 from django.db import models
 from allAccounts.models import *
 
 
-"""
-class Student(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=20)
-    student_name = models.CharField(max_length=50, null=True)
-    student_email = models.EmailField(max_length=100, null=True)
 
 
-class ClubRep(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=20)
-    clubRep_name = models.CharField(max_length=30)
-    club_rep_number = models.CharField(max_length=11)
-    club_rep_email = models.EmailField(max_length=100, null=True)
 
 
-class CinemaManager(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=20)
 
-"""
 class Club(models.Model):
     club_name = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=200)
@@ -33,10 +16,18 @@ class Club(models.Model):
     city = models.CharField(max_length=50)
     phone_num = models.IntegerField()
     email = models.EmailField(max_length=100)
+    clubID = models.IntegerField()
+
+    def __str__(self):
+        return self.club_name
+
+class ClubRep(models.Model):
+    club = models.OneToOneField(Club, on_delete=models.CASCADE)
     clubRepFirstName = models.CharField(max_length=50)
     clubRepLastName = models.CharField(max_length=50)
     dob = models.DateField()
-    clubID = models.IntegerField()
+    club_rep_number = models.CharField(max_length=11)
+    club_rep_email = models.EmailField(max_length=100, null=True)
 
 
 class screenChoices(models.TextChoices):

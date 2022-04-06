@@ -61,6 +61,17 @@ def addClub(request):
         form = AddClubForm()
     return render(request, 'addClub.html', {'form': form})
 
+def addClubRep(request):
+    if request.method == 'POST':
+        form = AddClubRepForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AddClubRepForm()
+    return render(request, 'addClubRep.html', {'form': form})
+
+
 # update any changes for movies.
 class UpdateMovieView(UpdateView):
     model = Movies
