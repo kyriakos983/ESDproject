@@ -44,11 +44,16 @@ def addMovie(request):
         form = MovieForm()
     return render(request, 'addFilm.html', {'form': form})
 
+
 # this is for cinema manager
-def delete_movie(request, movie_id):
-    movie = Movies.objects.get(Movies, pk=movie_id)
-    movie.delete()
-    return redirect('films.html')
+def delete_movie(request, id):
+    movie = Movies.objects.get(Movies, id=id)
+    if request.method == 'POST':
+        movie.delete()
+        return redirect('home')
+
+    return render(request, 'delete.html', {'movie': movie})
+
 
 # a cinema manager will be able to register a club
 def addClub(request):
@@ -61,6 +66,8 @@ def addClub(request):
         form = AddClubForm()
     return render(request, 'addClub.html', {'form': form})
 
+
+#  cinema manager will be able to add club representative
 def addClubRep(request):
     if request.method == 'POST':
         form = AddClubRepForm(request.POST)
@@ -72,21 +79,19 @@ def addClubRep(request):
     return render(request, 'addClubRep.html', {'form': form})
 
 
-# update any changes for movies.
-class UpdateMovieView(UpdateView):
+# update details view for cinema manager
+class updateMovieView(UpdateView):
     model = Movies
     fields = '__all__'
-    template_name = 'movieDetails.html'
+    template_name = 'updateMovie.html'
     success_url = reverse_lazy('home')
 
-    def get_absolute_url(selfself):
+    @staticmethod
+    def get_absolute_url():
         return reverse('home')
 
 
-# this is to get the product details when a user tries to view details of a movie
-def movie_details(request,name, id):
+# student will be able to access the movie details
+def movie_details(request, name, id):
     movie = Movies.objects.get(id=id)
     return render(request, 'movieDetails.html', {'movie': movie})
-
-
-

@@ -29,12 +29,16 @@ class ClubRep(models.Model):
     club_rep_number = models.CharField(max_length=11)
     club_rep_email = models.EmailField(max_length=100, null=True)
 
+    def __str__(self):
+        return self.club
+
 
 class screenChoices(models.TextChoices):
     screen1 = 'screen1'
     screen2 = 'screen2'
     screen3 = 'screen3'
-
+    screen4 = 'screen4'
+    screen5 = 'screen5'
 # This contains all the details regarding the movies and screen showing
 class Movies(models.Model):
     name = models.CharField(max_length=50)

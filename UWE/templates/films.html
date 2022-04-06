@@ -29,8 +29,8 @@
                   <button data-product="{{movie.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" >Buy Tickets</button>
                   <a class ="btn btn-outline-success" href="/product/{{movie.name}}/{{movie.id}}"> View Details</a>
                     {% elif user.accountOptions == 'is_cinema_manager' %}
-                <a class ="btn btn-outline-success" href="#"> Update Movie Details</a>
-                  <a class ="btn btn-outline-danger" href="#"> Delete Movie</a>
+                <a class ="btn btn-outline-success" href="{%url 'update_movie_details' movie.id%}" > Update Movie Details</a>
+                  <a class ="btn btn-outline-danger" href="{%url 'delete_movie' movie.id%}"> Delete Movie</a>
                   <h2 style="display: inline-block; float: right; font-size: 20px;"> {{movie.screen}}</h2>
 
             {% endif %}
