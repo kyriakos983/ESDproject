@@ -25,9 +25,11 @@
         <div class="box-element product">
                 <h1 style =" font-size: 20px">{{movie.name}}</h1>
                   <hr>
+           <!--Student selections-->
             {% if user.accountOptions == 'is_student' %}
-                  <button data-product="{{movie.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart" >Buy Tickets</button>
+                  <a href="{%url 'buyTickets' movie.id%}" class="btn btn-outline-secondary " >Buy Tickets</a>
                   <a class ="btn btn-outline-success" href="/product/{{movie.name}}/{{movie.id}}"> View Details</a>
+            <!--Cinema manager selections-->
                     {% elif user.accountOptions == 'is_cinema_manager' %}
                 <a class ="btn btn-outline-success" href="{%url 'update_movie_details' movie.id%}" > Update Movie Details</a>
                   <a class ="btn btn-outline-danger" href="{%url 'delete_movie' movie.id%}"> Delete Movie</a>

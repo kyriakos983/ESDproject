@@ -32,9 +32,12 @@ def DiscountView(request):
     context = {'discounts': discounts}
     return render(request, 'offersAndDiscounts.html', context)
 
+# this is the buy tickets view for students
+def BuyTicketsView(request, id):
+    movie = get_object_or_404(Movies, pk=id)
+    return render(request, 'buyTickets.html',{'movie': movie})
 
 # this is for cinema manager
-
 def addMovie(request):
     if request.method == 'POST':
         form = MovieForm(request.POST)
