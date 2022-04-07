@@ -33,6 +33,16 @@ class ClubRep(models.Model):
         return self.club
 
 
+class movieTypes(models.TextChoices):
+    Action = 'Action'
+    Comedy = 'Comedy'
+    Drama = 'Drama'
+    Fantasy = 'Fantasy'
+    Horror = 'Horror'
+    Mystery = 'Mystery'
+    Romance = 'Romance'
+    Thriller = 'Thriller'
+
 class screenChoices(models.TextChoices):
     screen1 = 'screen1'
     screen2 = 'screen2'
@@ -55,6 +65,8 @@ class Movies(models.Model):
     duration = models.TimeField(null=True, blank=True)
     description = models.CharField(max_length=500, null=True, blank=True)
     author = models.CharField(max_length=50, null=True, blank=True)
+    year = models.IntegerField(null=True, blank=True)
+    type = models.CharField(max_length=50,choices=movieTypes.choices, null=True, blank=True)
 
 
     def __str__(self):

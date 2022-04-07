@@ -31,7 +31,7 @@ urlpatterns = [
     path('add-movie', views.addMovie, name='add-movie'),
     path('add-club', views.addClub, name='add-club'),
     path('add-club-rep', views.addClubRep, name='add-club-rep'),
-    path('delete_movie/<int:pk>', views.delete_movie, name='delete_movie'),
+    path('delete_movie/<int:id>', views.delete_movie, name='delete_movie'),
     path('<int:pk>/update_movie_details/', updateMovieView.as_view(), name='update_movie_details'),
     path('product/<str:name>/<int:id>', views.movie_details, name='movieDetails'),
 

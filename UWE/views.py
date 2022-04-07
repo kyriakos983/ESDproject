@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView
@@ -47,12 +48,12 @@ def addMovie(request):
 
 # this is for cinema manager
 def delete_movie(request, id):
-    movie = Movies.objects.get(Movies, id=id)
+    movie = get_object_or_404(Movies, pk=id)
     if request.method == 'POST':
         movie.delete()
         return redirect('home')
 
-    return render(request, 'delete.html', {'movie': movie})
+    return render(request,"delete.html",{'movie': movie})
 
 
 # a cinema manager will be able to register a club

@@ -11,8 +11,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body style=" background-color: #F5F5DC;">
 {%include 'navbar.html' %}
+<div style="text-align: right;">
+<a class="btn btn-outline-success " href="{%url 'films'%}">Back to Films </a>
+  </div>
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
 
@@ -72,7 +76,7 @@
         <!--Grid column-->
         <div class="col-md-6 text-center">
 
-          <h4 class="my-4 h4">Movie Information</h4>
+          <h4 class="my-4 h4">Movie Description</h4>
 
           <p>{{movie.description}} </p>
 
@@ -88,7 +92,7 @@
         <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4">
           <h1>Authors</h1>
-          <p>{{movie.author}}</p>
+          <p><em><strong>Written By:</strong></em>{{movie.author}}</p>
 
 
 
@@ -99,22 +103,26 @@
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4">
           <h1>Actors</h1>
-          <p>{{movie.actor1}}</p>
-           <p>{{movie.actor2}}</p>
-           <p>{{movie.actor3}}</p>
+          <p><em><strong>actor 1:</strong></em>  {{movie.actor1}}</p>
+           <p><em><strong>actor 2:</strong></em>  {{movie.actor2}}</p>
+           <p><em><strong>actor 3:</strong></em>  {{movie.actor3}}</p>
 
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4">
-          <h1>Available</h1>
-          <p>{{movie.screen}}</p>
-          <p>{{movie.duration}}</p>
-          <p>{{movie.ageRating}}</p>
+          <h1>Movie Information</h1>
+          <p><em><strong>Screen:</strong></em>  {{movie.screen}}</p>
+          <p><em><strong>Duration:</strong></em>  {{movie.duration}}</p>
+          <p><em><strong>AgeRating:</strong></em>  {{movie.ageRating}}</p>
+          <p><em><strong>Type:</strong></em>  {{movie.type}}</p>
+
+
+
+
 
         </div>
-        <!--Grid column-->
 
       </div>
       <!--Grid row-->
