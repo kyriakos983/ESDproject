@@ -2,12 +2,7 @@ from datetime import datetime
 from django.db import models
 from allAccounts.models import *
 
-
-
-
-
-
-
+# model for all the  clubs
 class Club(models.Model):
     club_name = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=200)
@@ -21,6 +16,7 @@ class Club(models.Model):
     def __str__(self):
         return self.club_name
 
+# model for all the club representative
 class ClubRep(models.Model):
     club = models.OneToOneField(Club, on_delete=models.CASCADE)
     clubRepFirstName = models.CharField(max_length=50)
@@ -32,7 +28,7 @@ class ClubRep(models.Model):
     def __str__(self):
         return self.club
 
-
+# movie types choices
 class movieTypes(models.TextChoices):
     Action = 'Action'
     Comedy = 'Comedy'
@@ -43,12 +39,15 @@ class movieTypes(models.TextChoices):
     Romance = 'Romance'
     Thriller = 'Thriller'
 
+# screen options
 class screenChoices(models.TextChoices):
     screen1 = 'screen1'
     screen2 = 'screen2'
     screen3 = 'screen3'
     screen4 = 'screen4'
     screen5 = 'screen5'
+
+
 # This contains all the details regarding the movies and screen showing
 class Movies(models.Model):
     name = models.CharField(max_length=50)
