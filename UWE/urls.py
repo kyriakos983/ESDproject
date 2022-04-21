@@ -21,6 +21,8 @@ from django.conf import settings
 
 from UWE.views import updateMovieView
 
+from django.views.i18n import JavaScriptCatalog
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name="home"),
@@ -29,6 +31,7 @@ urlpatterns = [
     path('films', views.MoviesView, name='films'),
     path('offers&discounts', views.DiscountView, name='offers&discounts'),
     path('add-movie', views.addMovie, name='add-movie'),
+    path('jsi18n', JavaScriptCatalog.as_view(), name='js-catalog'),
     path('add-club', views.addClub, name='add-club'),
     path('add-club-rep', views.addClubRep, name='add-club-rep'),
     path('delete_movie/<int:id>', views.delete_movie, name='delete_movie'),

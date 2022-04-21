@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView
+from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
+from django import forms
 
 from UWE.forms import *
 from UWE.models import *
@@ -32,10 +34,11 @@ def DiscountView(request):
     context = {'discounts': discounts}
     return render(request, 'offersAndDiscounts.html', context)
 
+
 # this is the buy tickets view for students
 def BuyTicketsView(request, id):
     movie = get_object_or_404(Movies, pk=id)
-    return render(request, 'buyTickets.html',{'movie': movie})
+    return render(request, 'buyTickets.html', {'movie': movie})
 
 # this is for cinema manager
 def addMovie(request):
@@ -56,7 +59,7 @@ def delete_movie(request, id):
         movie.delete()
         return redirect('home')
 
-    return render(request,"delete.html",{'movie': movie})
+    return render(request, "delete.html", {'movie': movie})
 
 
 # a cinema manager will be able to register a club

@@ -19,12 +19,15 @@
 <br>
 
 <div class=" form-group">
-    <form  method="POST">
+    <div class="container">
+         <form  method="POST">
         {%csrf_token%}
         {{ form|crispy }}
 
         <input type = 'submit' class="btn btn-secondary" value="Register ClubRep">
     </form>
+    </div>
+
 
 </div>
 </body>
