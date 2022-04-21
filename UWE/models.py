@@ -26,7 +26,7 @@ class ClubRep(models.Model):
     club_rep_email = models.EmailField(max_length=100, null=True)
 
     def __str__(self):
-        return self.club
+        return self.clubRepFirstName
 
 # movie types choices
 class movieTypes(models.TextChoices):
@@ -54,7 +54,7 @@ class Movies(models.Model):
     screen = models.CharField(max_length=50, choices=screenChoices.choices, null=True, blank=True)
     dateAndTime = models.DateTimeField(default=datetime.now())
     ticketPrice = models.IntegerField()
-    image = models.ImageField(default=None, null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     # setting the capacity of the screen show by limiting the tickets to 300 mentioned in the requirements
     tickets = models.IntegerField(default=0, max_length= 300)
     actor1 = models.CharField(max_length=100, null=True, blank=True)
@@ -95,10 +95,12 @@ class TicketDiscount(models.Model):
             url = ''
         return url
 
-class ticket(models.Model):
+class Ticket(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    movie = models.OneToOneField(Movies, on_delete=models.CASCADE, default=None)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     quantity = models.IntegerField(max_length=300)
     price = models.IntegerField()
+
 

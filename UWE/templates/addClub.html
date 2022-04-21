@@ -14,17 +14,22 @@
 <body style=" background-color: #F5F5DC;">
 {%include 'navbar.html' %}
 <div style="margin: 20px">
-<h1 style="text-align: center;"> Add Student Club</h1>
+<h1 class="line" style="text-align: center;"> Add Student Club</h1>
+    <hr>
     </div>
 <br>
 
 <div class=" form-group">
+    <div class="container">
     <form  method="POST">
-        {%csrf_token%}
-        {{ form|crispy }}
 
+        {%csrf_token%}
+        {{form.media}}
+        {{ form|crispy }}
         <input type = 'submit' class="btn btn-secondary" value="Register Club">
     </form>
+    </div>
+
 
 </div>
 </body>

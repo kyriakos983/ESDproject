@@ -11,20 +11,37 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    .hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+    width: 200px;
+    }
+</style>
 <body style=" background-color: #F5F5DC;">
 {%include 'navbar.html' %}
 <div style="margin: 20px">
+
 <h1 style="text-align: center;"> Add Club Representative </h1>
+<hr/>
     </div>
 <br>
 
 <div class=" form-group">
+    <div   class="container">
     <form  method="POST">
+
         {%csrf_token%}
         {{ form|crispy }}
 
-        <input type = 'submit' class="btn btn-secondary" value="Register ClubRep">
+        <input type = 'submit' class="btn btn-secondary" value="Register Club">
     </form>
+    </div>
+
 
 </div>
 </body>

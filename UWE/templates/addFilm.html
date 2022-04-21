@@ -15,16 +15,19 @@
 {%include 'navbar.html' %}
 <div style="margin: 20px">
 <h1 style="text-align: center;"> Add film</h1>
+    <hr>
     </div>
 <br>
-
 <div class=" form-group">
-    <form  method="POST">
+    <div class="container">
+    <form  method="POST" enctype="multipart/form-data">
+
         {%csrf_token%}
         {{ form|crispy }}
 
-        <input type = 'submit' class="btn btn-secondary" value="add Film">
+        <input type = 'submit' class="btn btn-secondary" value="Register Club">
     </form>
+    </div>
 
 </div>
 </body>

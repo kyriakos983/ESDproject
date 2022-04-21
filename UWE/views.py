@@ -40,7 +40,7 @@ def BuyTicketsView(request, id):
 # this is for cinema manager
 def addMovie(request):
     if request.method == 'POST':
-        form = MovieForm(request.POST)
+        form = MovieForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -54,7 +54,7 @@ def delete_movie(request, id):
     movie = get_object_or_404(Movies, pk=id)
     if request.method == 'POST':
         movie.delete()
-        return redirect('home')
+        return redirect('films')
 
     return render(request,"delete.html",{'movie': movie})
 
